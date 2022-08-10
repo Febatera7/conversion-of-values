@@ -1,0 +1,118 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "eng-gruposbf-backend-javascript",
+    "version": "1.0.0",
+    "description": "An application that converts values to other registered currencies and updates the quotes of some of these currencies daily"
+  },
+  "host": "localhost:3555",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Prices",
+      "description": "Compares the value of the product in Real with other currencies"
+    },
+    {
+      "name": "Quotations",
+      "description": "Save, update and view some currency quotes"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/prices/compare": {
+      "post": {
+        "tags": [
+          "Prices"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Solicitação Inválida"
+          }
+        }
+      }
+    },
+    "/quotations/": {
+      "get": {
+        "tags": [
+          "Quotations"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Solicitação Inválida"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Quotations"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "initials": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Criado"
+          },
+          "400": {
+            "description": "Solicitação Inválida"
+          }
+        }
+      }
+    },
+    "/quotations/{initials}": {
+      "put": {
+        "tags": [
+          "Quotations"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "initials",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Solicitação Inválida"
+          }
+        }
+      }
+    }
+  }
+}
