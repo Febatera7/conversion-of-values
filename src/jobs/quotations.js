@@ -1,1 +1,0 @@
-//Aqui serão feitas as chamadas para a api que fará a cotação automática de moedas.

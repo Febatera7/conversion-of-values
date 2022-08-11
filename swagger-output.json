@@ -34,7 +34,20 @@
           "Prices"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -75,6 +88,9 @@
               "properties": {
                 "initials": {
                   "example": "any"
+                },
+                "valueForOneReal": {
+                  "example": "any"
                 }
               }
             }
@@ -91,7 +107,41 @@
       }
     },
     "/quotations/{initials}": {
-      "put": {
+      "patch": {
+        "tags": [
+          "Quotations"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "initials",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "valueForOneReal": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Solicitação Inválida"
+          }
+        }
+      },
+      "delete": {
         "tags": [
           "Quotations"
         ],

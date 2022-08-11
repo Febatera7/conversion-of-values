@@ -8,7 +8,7 @@ const quotationsSchema = new Schema({
         maxLength: 3
     },
     name: { type: String, required: true },
-    comparisonWithReal: { type: Number, required: true },
+    valueForOneReal: { type: Number, required: true },
 }, { timestamps: true });
 
 const QuotationsModel = model("Quotations", quotationsSchema);

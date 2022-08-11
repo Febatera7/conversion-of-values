@@ -6,19 +6,23 @@ const getQuotations = async (req, res) => {
     try {
         const quotations = await QuotationsModel.find();
 
-        res.status(200).send({ quotations: quotations });
+        res.status(200).send({ quotations });
     } catch (error) {
         logger.error(error);
         res.status(400).send({ error: error.message });
     }
 };
 
-const saveManuallyQuotation = async (req, res) => {
+const saveQuotation = async (req, res) => {
     // #swagger.tags = ["Quotations"]
     try {
         const data = req.body;
 
         data.initials = data.initials.toUpperCase();
+
+        if(typeof data.valueForOneReal === "string") {
+            data.valueForOneReal = parseFloat(data.valueForOneReal.replace(",", "."));
+        }
 
         const quotationExists = await QuotationsModel.findOne(
             { initials: data.initials }
@@ -27,8 +31,6 @@ const saveManuallyQuotation = async (req, res) => {
         if(quotationExists) {
             throw new Error("Currency already registered");
         }
-
-        console.log(data);
 
         await QuotationsModel.create(data);
 
@@ -39,11 +41,15 @@ const saveManuallyQuotation = async (req, res) => {
     }
 };
 
-const updateManuallyQuotation = async (req, res) => {
+const updateQuotation = async (req, res) => {
     // #swagger.tags = ["Quotations"]
     try {
         const currencyInitials = req.params.initials.toUpperCase();
         const data = req.body;
+
+        if(data.valueForOneReal && typeof data.valueForOneReal === "string") {
+            data.valueForOneReal = parseFloat(data.valueForOneReal.replace(",", "."));
+        }
 
         const quotation = await QuotationsModel.findOne(
             { initials: currencyInitials }
@@ -62,8 +68,29 @@ const updateManuallyQuotation = async (req, res) => {
     }
 };
 
+const deleteQuotation = async (req, res) => {
+    // #swagger.tags = ["Quotations"]
+    try {
+        const currencyInitials = req.params.initials.toUpperCase();
+
+        const quotation = await QuotationsModel.findOneAndDelete(
+            { initials: currencyInitials }
+        );
+
+        if (!quotation) {
+            throw new Error("Quotation not found");
+        }
+
+        res.status(200).send({ message: `Quotation ${quotation.name} deleted` });
+    } catch (error) {
+        logger.error(error);
+        res.status(400).send({ error: error.message });
+    }
+};
+
 module.exports = {
     getQuotations,
-    saveManuallyQuotation,
-    updateManuallyQuotation,
+    saveQuotation,
+    updateQuotation,
+    deleteQuotation
 };

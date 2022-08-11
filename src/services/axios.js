@@ -1,1 +1,0 @@
-//Aqui será criada uma instância de axios, que poderá ser utilizada por outras funções da aplicação, se necessário.
