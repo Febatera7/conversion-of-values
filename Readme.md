@@ -5,7 +5,7 @@ There are currently US Dollars, Euros and Indian Rupees registered, but you can 
 
 Despite this, I will use dummy currencies in the examples below.
 
-You can use the cloud application to make your requests through the base path **https://app.heroku.com/myapp**. To see the suffixes of the routes, you can access the **[documentation](https://app.heroku.com/myapp/docs)** and do your tests there, by the API platform of your choice or by making the calls directly from your application.
+You can use the cloud application to make your requests through the base path **https://eng-gruposbf-backend-javascrip.herokuapp.com/**. To see the suffixes of the routes, you can access the **[documentation](https://eng-gruposbf-backend-javascrip.herokuapp.com/docs/)** and do your tests there, by the API platform of your choice or by making the calls directly from your application.
 
 If you want to download the project and test it locally, below are examples of how to do it. In this example, we will use port **3555**. Remember that if you download, you will need to create your own environment variables, with the example in the file _.env.example_
 
