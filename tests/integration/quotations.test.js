@@ -49,16 +49,8 @@ describe("Update registered quotation ", async () => {
         expect(response.status).to.equal(200);
     });
 
-    it("Should return status code 200 and update registered quotation name", async () => {
-        const response = await chai.request(app)
-            .patch(`/quotations/${mockQuotation.initials}`)
-            .send({ name: "Test Currency 2" });
-
-        expect(response.status).to.equal(200);
-    });
-
     it("Should return status code 400 and a error message", async () => {
-        const response = await chai.request(app).patch("/quotations/jkl").send({});
+        const response = await chai.request(app).patch("/quotations/jkl").send({ valueForOneReal: 1 });
 
         expect(response.status).to.equal(400);
     });

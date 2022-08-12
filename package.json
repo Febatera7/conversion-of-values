@@ -23,7 +23,8 @@
     "nyc": "^15.1.0",
     "sinon": "^14.0.0",
     "swagger-autogen": "^2.21.5",
-    "swagger-ui-express": "^4.5.0"
+    "swagger-ui-express": "^4.5.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "eslint": "^8.21.0",

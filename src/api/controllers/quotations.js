@@ -34,7 +34,7 @@ const updateQuotation = async (req, res) => {
     // #swagger.tags = ["Quotations"]
     try {
         const currencyInitials = req.params.initials.toUpperCase();
-        const data = req.body;
+        const { valueForOneReal } = req.body;
 
         const quotation = await QuotationsModel.findOne(
             { initials: currencyInitials }
@@ -42,9 +42,9 @@ const updateQuotation = async (req, res) => {
 
         if (!quotation) throw new Error("Quotation not found");
 
-        await quotation.updateOne({ $set: { ...data } });
+        await quotation.updateOne({ $set: { valueForOneReal } });
 
-        res.status(200).send({ message: `Quotation ${data.name ? data.name : quotation.name} updated` });
+        res.status(200).send({ message: `Quotation ${quotation.name} updated` });
     } catch (error) {
         logger.error(error);
         res.status(400).send({ error: error.message });
