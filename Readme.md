@@ -94,7 +94,8 @@ In this example, to update the _Test_ currency, we will pass its initials, saved
 
 ### Request to delete a quotation
 
-Similar to the example of the update method, you will pass the URL in the same way to delete, but it is not necessary to pass a body to the request, as follows: **http://localhost:3555/quotations/tst**
+Similar to the example of the update method, you will pass the URL in the same way to delete, but it is not necessary to pass a body to the request, as follows: **http://localhost:3555/quotations/{initials}**.
+Or, following the example above and excluding the same quotation: **http://localhost:3555/quotations/tst**
 >It doesn't matter if in initials you pass with upper case or lower case
 
 
