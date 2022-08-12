@@ -23,7 +23,7 @@ const currencyCompare = async (req, res) => {
         const obj = {
             currencyInitials: quotation.initials,
             currency: quotation.name,
-            price: updatedPrice.toFixed(2).toLocaleString({ style: "currency" }),
+            price: updatedPrice.toFixed(2).replace(".", ","),
         };
 
         prices.push(obj);
