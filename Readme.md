@@ -69,6 +69,7 @@ With the **GET** method, you can know all the registered quotes, through the URL
 
 To save a new quotation, you must send a body similar to the one below, to the url **http://localhost:3555/quotations**.
 >It doesn't matter if in initials you pass with upper case or lower case, it will always save as upper case
+
 ...
 {
     "name": "Test",
@@ -82,6 +83,7 @@ To save a new quotation, you must send a body similar to the one below, to the u
 To save a new quotation, you must send a body similar to the one below, to the url **http://localhost:3555/quotations/{initials}**.
 In this example, to update the _Test_ currency, we will pass its initials, saved in the example above like this: **http://localhost:3555/quotations/tst**.
 >It doesn't matter if in initials you pass with upper case or lower case
+
 ...
 {
     "valueForOneReal": 1.75
