@@ -15,10 +15,6 @@ const saveQuotation = async (req, res) => {
 
         data.initials = data.initials.toUpperCase();
 
-        if (typeof data.valueForOneReal === "string") {
-            data.valueForOneReal = parseFloat(data.valueForOneReal.replace(",", "."));
-        }
-
         const quotationExists = await QuotationsModel.findOne(
             { initials: data.initials }
         );
@@ -39,10 +35,6 @@ const updateQuotation = async (req, res) => {
     try {
         const currencyInitials = req.params.initials.toUpperCase();
         const data = req.body;
-
-        if (data.valueForOneReal && typeof data.valueForOneReal === "string") {
-            data.valueForOneReal = parseFloat(data.valueForOneReal.replace(",", "."));
-        }
 
         const quotation = await QuotationsModel.findOne(
             { initials: currencyInitials }
