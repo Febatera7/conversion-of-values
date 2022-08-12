@@ -2,14 +2,23 @@ const QuotationsModel = require("../../databases/models/quotations");
 const logger = require("../../utils/logger");
 
 const getQuotations = async (req, res) => {
-    // #swagger.tags = ["Quotations"]
+    /*#swagger.tags = ["Quotations"]
+    #swagger.description = "Endpoint that fetches all registered quotation"*/
+
     const quotations = await QuotationsModel.find();
 
     res.status(200).send({ quotations });
 };
 
 const saveQuotation = async (req, res) => {
-    // #swagger.tags = ["Quotations"]
+    /*#swagger.tags = ["Quotations"]
+    #swagger.description = "Endpoint that register quotation"
+    #swagger.parameters["data"] = {
+        description: "Data to save quotation.",
+        in: "body",
+        schema: { $ref: "#/definitions/SaveQuotation" },
+    }*/
+
     try {
         const data = req.body;
 
@@ -31,7 +40,17 @@ const saveQuotation = async (req, res) => {
 };
 
 const updateQuotation = async (req, res) => {
-    // #swagger.tags = ["Quotations"]
+    /*#swagger.tags = ["Quotations"]
+    #swagger.description = "Endpoint that update quotation"
+    #swagger.parameters["initials"] = { description: "Initial of the chosen quotation" }
+    #swagger.parameters["valueForOneReal"] = {
+        description: "Quotation compared to one Real.",
+        type: "number",
+        required: true,
+        in: "body",
+        example: 1.555555,
+    }*/
+
     try {
         const currencyInitials = req.params.initials.toUpperCase();
         const { valueForOneReal } = req.body;
@@ -52,7 +71,10 @@ const updateQuotation = async (req, res) => {
 };
 
 const deleteQuotation = async (req, res) => {
-    // #swagger.tags = ["Quotations"]
+    /*#swagger.tags = ["Quotations"]
+    #swagger.description = "Endpoint that delete quotation"
+    #swagger.parameters["initials"] = { description: "Initial of the chosen quotation" }*/
+
     try {
         const currencyInitials = req.params.initials.toUpperCase();
 

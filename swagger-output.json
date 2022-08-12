@@ -14,7 +14,7 @@
     },
     {
       "name": "Quotations",
-      "description": "Save, update and view some currency quotes"
+      "description": "Save, update, delete and view some currency quotations"
     }
   ],
   "schemes": [
@@ -33,27 +33,27 @@
         "tags": [
           "Prices"
         ],
-        "description": "",
+        "description": "Endpoint that compares and returns the value passed in other registered currencies",
         "parameters": [
           {
-            "name": "body",
+            "name": "price",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
                 "price": {
-                  "example": "any"
+                  "example": 999.99
                 }
               }
-            }
+            },
+            "description": "Price to be compared.",
+            "required": true,
+            "example": 999.99
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "400": {
-            "description": "Solicitação Inválida"
           }
         }
       }
@@ -63,14 +63,11 @@
         "tags": [
           "Quotations"
         ],
-        "description": "",
+        "description": "Endpoint that fetches all registered quotation",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "400": {
-            "description": "Solicitação Inválida"
           }
         }
       },
@@ -78,30 +75,35 @@
         "tags": [
           "Quotations"
         ],
-        "description": "",
+        "description": "Endpoint that register quotation",
         "parameters": [
           {
-            "name": "body",
+            "name": "data",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "initials": {
-                  "example": "any"
-                },
                 "valueForOneReal": {
-                  "example": "any"
+                  "example": 0.857
+                },
+                "initials": {
+                  "example": "exp"
+                },
+                "name": {
+                  "example": "Example"
                 }
               }
-            }
+            },
+            "description": "Endpoint that register quotation.",
+            "required": true
           }
         ],
         "responses": {
           "201": {
-            "description": "Criado"
+            "description": "Created"
           },
           "400": {
-            "description": "Solicitação Inválida"
+            "description": "Bad Request"
           }
         }
       }
@@ -111,25 +113,29 @@
         "tags": [
           "Quotations"
         ],
-        "description": "",
+        "description": "Endpoint that update quotation",
         "parameters": [
           {
             "name": "initials",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Initial of the chosen quotation"
           },
           {
-            "name": "body",
+            "name": "valueForOneReal",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
                 "valueForOneReal": {
-                  "example": "any"
+                  "example": 1.555555
                 }
               }
-            }
+            },
+            "description": "Quotation compared to one Real.",
+            "required": true,
+            "example": 1.555555
           }
         ],
         "responses": {
@@ -137,7 +143,7 @@
             "description": "OK"
           },
           "400": {
-            "description": "Solicitação Inválida"
+            "description": "Bad Request"
           }
         }
       },
@@ -145,13 +151,14 @@
         "tags": [
           "Quotations"
         ],
-        "description": "",
+        "description": "Endpoint that delete quotation",
         "parameters": [
           {
             "name": "initials",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Initial of the chosen quotation"
           }
         ],
         "responses": {
@@ -159,8 +166,45 @@
             "description": "OK"
           },
           "400": {
-            "description": "Solicitação Inválida"
+            "description": "Bad Request"
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Price": {
+      "type": "object",
+      "properties": {
+        "price": {
+          "type": "number",
+          "example": 999.99
+        }
+      }
+    },
+    "SaveQuotation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Example"
+        },
+        "initials": {
+          "type": "string",
+          "example": "exp"
+        },
+        "valueForOneReal": {
+          "type": "number",
+          "example": 0.857
+        }
+      }
+    },
+    "UpdateQuotation": {
+      "type": "object",
+      "properties": {
+        "valueForOneReal": {
+          "type": "number",
+          "example": 1.555555
         }
       }
     }

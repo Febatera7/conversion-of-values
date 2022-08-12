@@ -1,8 +1,7 @@
-const options = {
-    openApi: "3.0.0",
-    language: "pt-BR"
-};
 require("dotenv/config");
+const options = {
+    openApi: "3.0.0"
+};
 const swaggerAutogen = require("swagger-autogen")(options);
 const { name, description, version } = require("./package.json");
 const doc = {
@@ -23,9 +22,22 @@ const doc = {
         },
         {
             name: "Quotations",
-            description: "Save, update and view some currency quotes",
+            description: "Save, update, delete and view some currency quotations",
         },
     ],
+    definitions: {
+        Price: {
+            price: 999.99
+        },
+        SaveQuotation: {
+            $name: "Example",
+            $initials: "exp",
+            $valueForOneReal: 0.857
+        },
+        UpdateQuotation: {
+            valueForOneReal: 1.555555
+        }
+    }
 };
 
 const outputFile = "./swagger-output.json";
