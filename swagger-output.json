@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "description": "An application that converts values to other registered currencies and updates the quotes of some of these currencies daily"
   },
-  "host": "https://eng-gruposbf-backend-javascrip.herokuapp.com/",
+  "host": "https://eng-gruposbf-backend-javascrip.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
