@@ -31,7 +31,4 @@ const doc = {
 const outputFile = "./swagger-output.json";
 const endpointsFiles = ["./src/api/routes/index.js"];
 
-// swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
-//     require("./src/server");
-// });
 swaggerAutogen(outputFile, endpointsFiles, doc);

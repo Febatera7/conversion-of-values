@@ -1,3 +1,4 @@
 node_modules
 .vscode
-*.spec.ts
+*.test.js
+.nyc_output

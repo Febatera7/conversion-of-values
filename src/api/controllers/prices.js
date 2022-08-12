@@ -6,6 +6,8 @@ const currencyCompare = async (req, res) => {
     try {
         const { price } = req.body;
 
+        if (!price) throw new Error("Dont have a price to compare");
+
         const quotations = await QuotationsModel.find();
 
         const prices = [];
@@ -16,7 +18,7 @@ const currencyCompare = async (req, res) => {
             const obj = {
                 currencyInitials: quotation.initials,
                 currency: quotation.name,
-                price: updatedPrice.toFixed(2).toLocaleString({ style: "currency"}),
+                price: updatedPrice.toFixed(2).toLocaleString({ style: "currency" }),
             };
 
             prices.push(obj);
@@ -30,6 +32,6 @@ const currencyCompare = async (req, res) => {
     }
 };
 
-module.exports = { 
+module.exports = {
     currencyCompare,
 };

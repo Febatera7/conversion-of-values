@@ -3,14 +3,9 @@ const logger = require("../../utils/logger");
 
 const getQuotations = async (req, res) => {
     // #swagger.tags = ["Quotations"]
-    try {
-        const quotations = await QuotationsModel.find();
+    const quotations = await QuotationsModel.find();
 
-        res.status(200).send({ quotations });
-    } catch (error) {
-        logger.error(error);
-        res.status(400).send({ error: error.message });
-    }
+    res.status(200).send({ quotations });
 };
 
 const saveQuotation = async (req, res) => {
@@ -20,7 +15,7 @@ const saveQuotation = async (req, res) => {
 
         data.initials = data.initials.toUpperCase();
 
-        if(typeof data.valueForOneReal === "string") {
+        if (typeof data.valueForOneReal === "string") {
             data.valueForOneReal = parseFloat(data.valueForOneReal.replace(",", "."));
         }
 
@@ -28,9 +23,7 @@ const saveQuotation = async (req, res) => {
             { initials: data.initials }
         );
 
-        if(quotationExists) {
-            throw new Error("Currency already registered");
-        }
+        if (quotationExists) throw new Error("Currency already registered");
 
         await QuotationsModel.create(data);
 
@@ -47,7 +40,7 @@ const updateQuotation = async (req, res) => {
         const currencyInitials = req.params.initials.toUpperCase();
         const data = req.body;
 
-        if(data.valueForOneReal && typeof data.valueForOneReal === "string") {
+        if (data.valueForOneReal && typeof data.valueForOneReal === "string") {
             data.valueForOneReal = parseFloat(data.valueForOneReal.replace(",", "."));
         }
 
@@ -55,9 +48,7 @@ const updateQuotation = async (req, res) => {
             { initials: currencyInitials }
         );
 
-        if (!quotation) {
-            throw new Error("Quotation not found");
-        }
+        if (!quotation) throw new Error("Quotation not found");
 
         await quotation.updateOne({ $set: { ...data } });
 
@@ -77,9 +68,7 @@ const deleteQuotation = async (req, res) => {
             { initials: currencyInitials }
         );
 
-        if (!quotation) {
-            throw new Error("Quotation not found");
-        }
+        if (!quotation) throw new Error("Quotation not found");
 
         res.status(200).send({ message: `Quotation ${quotation.name} deleted` });
     } catch (error) {
