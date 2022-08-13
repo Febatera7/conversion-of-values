@@ -1,13 +1,12 @@
 # Eng-gruposbf-backend-javascript
 
 In this application you can compare prices with pre-registered currencies, in addition to registering new ones, updating and deleting quotes for these currencies.
-There are currently US Dollars, Euros and Indian Rupees registered, but you can register more currencies or update their quotes if necessary.
+There are currently US Dollars, Euros and Indian Rupees registered, but you can register more currencies or update your quotes if needed.
 
 Despite this, I will use dummy currencies in the examples below.
 
-You can use the cloud application to make your requests through the base path **https://eng-gruposbf-backend-javascrip.herokuapp.com/**. To see the suffixes of the routes, you can access the **[documentation](https://eng-gruposbf-backend-javascrip.herokuapp.com/docs/)** and do your tests there, by the API platform of your choice or by making the calls directly from your application.
-
-If you want to download the project and test it locally, below are examples of how to do it. In this example, we will use port **3555**. Remember that if you download, you will need to create your own environment variables, with the example in the file _.env.example_
+Although there is documentation with Swagger by going to **http://localhost:{PORT}/docs**, below are some examples of how to do it. In this example, we will use port **3555**. Remember that when downloading, you will need to create your own environment variables, with the example in the file _.env.example_
+>I left in the _.env.example_ the link to the database used to save the quotes passed in the test, with the purpose of having more practicality when configuring the same
 
 ### Request for conversion of values into registered currencies
 
