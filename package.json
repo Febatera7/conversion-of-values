@@ -1,5 +1,5 @@
 {
-  "name": "eng-gruposbf-backend-javascript",
+  "name": "conversion-of-valuest",
   "version": "1.0.0",
   "description": "An application that converts values to other registered currencies and updates the quotes of some of these currencies daily",
   "main": "src/server.js",
